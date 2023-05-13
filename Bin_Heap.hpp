@@ -285,8 +285,7 @@ void BinHeap<K, V>::replaceValue(Entry<K, V> &e, V value)
 }
 // Does the Heap respect Heap-Order property.
 // Depends if it Max or Min Heap.
-// No way yet to rebuild Heap if does not respect
-// Heap-Order property.
+// Can be rebuilt with createHeap() if isHeap() is false.
 template <typename K, typename V>
 bool BinHeap<K, V>::isHeap()
 {
