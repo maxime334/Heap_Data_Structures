@@ -9,20 +9,17 @@ class Entry
     int index;
 
 public:
-    // Implicit conversions were made with this?
     explicit Entry();
     explicit Entry(K, V, int = 0);
-    // Entry(const Entry<K, V> &);
     K getKey() const;
     V getValue() const;
     int getIndex() const;
     void setValue(V);
     void setKey(K);
     void setIndex(int);
-    // void operator=(const Entry<K, V> &);
 
-    // Not a member function.
-    // Must be declared inline or won't work for some reason.
+    //---Operator_Overloading---//
+    
     friend std::ostream &operator<<(std::ostream &os, const Entry<K, V> &e)
     {
         os << "Entry has key: " << e.key << " and has value: " << e.value;
@@ -68,7 +65,9 @@ public:
         return false;
     }
 };
+//--Constructors--//
 
+//Default.
 template <typename K, typename V>
 Entry<K, V>::Entry()
 {
@@ -78,24 +77,10 @@ Entry<K, V>::Entry()
     this->value = v;
     this->index = 0;
 }
-//--Constructor--//
+// Parameterized.
 template <typename K, typename V>
 Entry<K, V>::Entry(K key, V value, int index) : key(key), value(value) {}
 
-// template <typename K, typename V>
-// Entry<K, V>::Entry(const Entry<K, V> &a)
-// {
-//     key = a.key;
-//     value = a.value;
-//     index = a.index;
-// }
-// template <typename K, typename V>
-// void Entry<K, V>::operator=(const Entry<K, V> &a)
-// {
-//     key = a.key;
-//     value = a.value;
-//     index = a.index;
-// }
 //--Accessors--//
 template <typename K, typename V>
 K Entry<K, V>::getKey() const
