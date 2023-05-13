@@ -70,33 +70,37 @@ BinHeap<K, V>::BinHeap(bool isMinHeap)
 {
     this->isMinHeap = isMinHeap;
 }
+// Returns number of Entries within the Heap.
 template <typename K, typename V>
 int BinHeap<K, V>::size() const
 {
     return storage.size();
 }
+// Returns left child index.
 template <typename K, typename V>
 int BinHeap<K, V>::left(const int j) const
 {
     return 2 * j + 1;
 }
-// Returns right K, typename V> of a K, typename V> within CompleteTree.
+// Returns right child index.
 template <typename K, typename V>
 int BinHeap<K, V>::right(const int j) const
 {
     return 2 * j + 2;
 }
-// Returns parent K, typename V> of a K, typename V> within CompleteTree.
+// Returns parent index.
 template <typename K, typename V>
 int BinHeap<K, V>::parent(const int j) const
 {
     return (j - 1) / 2;
 }
+// Does Node has a left child.
 template <typename K, typename V>
 bool BinHeap<K, V>::hasLeft(const int j) const
 {
     return left(j) < size();
 }
+// Does Node has a right child.
 template <typename K, typename V>
 bool BinHeap<K, V>::hasRight(const int j) const
 {
@@ -107,18 +111,21 @@ bool BinHeap<K, V>::isRoot(const int j) const
 {
     return j == 0;
 }
+// Return a copy of Entry at index i.
+// Constant member function.
 template <typename K, typename V>
 Entry<K, V> BinHeap<K, V>::pos(int i) const
 {
     return **(storage.begin() + i);
 }
-// Does not check if root is there
+// Const function which returns a copy of the root Node.
 template <typename K, typename V>
 Entry<K, V> BinHeap<K, V>::min() const
 {
     return pos(0);
 }
-// Something not working here.
+// Swap Entries within the Vector.
+// Positions and indices swapped only.
 template <typename K, typename V>
 void BinHeap<K, V>::swap(Entry<K, V> &a, Entry<K, V> &b)
 {
@@ -145,6 +152,7 @@ bool BinHeap<K, V>::compare(const Entry<K, V> &a, const Entry<K, V> &b) const
         return a > b;
     }
 }
+// Insert by reference within the Heap.
 template <typename K, typename V>
 void BinHeap<K, V>::insert(Entry<K, V> &e)
 {
@@ -217,6 +225,8 @@ void BinHeap<K, V>::downheap(int i)
         }
     }
 }
+// Check if downheap or upheap is necessary, and make the
+// necessary moves.
 template <typename K, typename V>
 void BinHeap<K, V>::bubble(int i)
 {
@@ -235,6 +245,7 @@ void BinHeap<K, V>::bubble(int i)
         downheap(i);
     }
 }
+// Removes the root Node from the Heap, and downheaps.
 template <typename K, typename V>
 Entry<K, V> &BinHeap<K, V>::removeMin()
 {
@@ -264,11 +275,16 @@ void BinHeap<K, V>::replaceKey(Entry<K, V> &e, K key)
     int index = e.getIndex();
     bubble(index);
 }
+// Replace value of a Node within the Heap.
 template <typename K, typename V>
 void BinHeap<K, V>::replaceValue(Entry<K, V> &e, V value)
 {
     e.setValue(value);
 }
+// Does the Heap respect Heap-Order property.
+// Depends if it Max or Min Heap.
+// No way yet to rebuild Heap if does not respect
+// Heap-Order property.
 template <typename K, typename V>
 bool BinHeap<K, V>::isHeap()
 {
@@ -310,6 +326,7 @@ bool BinHeap<K, V>::isHeap()
     }
     return true;
 }
+// Change from Min Heap to Max Heap, or vice-versa.
 template <typename K, typename V>
 void BinHeap<K, V>::toggle()
 {
@@ -327,6 +344,9 @@ bool BinHeap<K, V>::state() const
 {
     return isMinHeap;
 }
+// Removes a Specified Entry from the Heap.
+// Will make the necessary changes so Heap still
+// follows Heap-Order property.
 template <typename K, typename V>
 void BinHeap<K, V>::remove(Entry<K, V> &e)
 {
