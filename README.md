@@ -7,5 +7,5 @@ All insertions are made by reference, and so any changes to the Entry outside ca
 Heap. Once inserted, the Entries keys and values must be changed with methods provided.
 
 Some changes are still needed, such as more comments, exception handling and a way
-to rebuild the Heap if error happens.
+to rebuild the Heap if an error happens.
 
