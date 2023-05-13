@@ -1,7 +1,7 @@
 # Heap_Data_Structures
 
-Repository which include implementation of Adaptable Priority Queue, with Binary Heap
-and with Fibonacci Heap.
+Repository which include implementation of Adaptable Priority Queue intp Binary Heap
+and Fibonacci Heap.
 
 All insertions are made by reference, and so any changes to the Entry outside can destroy the\
 Heap. Once inserted, the Entries keys and values must be changed with methods provided.
