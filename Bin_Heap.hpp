@@ -17,13 +17,15 @@ public:
     Entry<K, V> min() const;
     void insert(Entry<K, V> &);
     Entry<K, V> &removeMin();
-    Entry<K, V> &operator[](int);
+    Entry<K, V> operator[](int);
     void replaceKey(Entry<K, V> &, K);
     void replaceValue(Entry<K, V> &, V);
     bool state() const;
     void toggle();
     bool isHeap();
     void remove(Entry<K, V> &);
+    void createHeap();
+    void clearHeap();
 
     struct Iterator
     {
@@ -331,11 +333,7 @@ template <typename K, typename V>
 void BinHeap<K, V>::toggle()
 {
     isMinHeap = !isMinHeap;
-    int n = size();
-    for (int i = (n / 2) - 1; i >= 0; i--)
-    {
-        downheap(i);
-    }
+    createHeap();
 }
 // True returned if it is a Minimum Heap.
 // Else false returned and it is a Maximum Heap.
@@ -357,6 +355,29 @@ void BinHeap<K, V>::remove(Entry<K, V> &e)
     storage.pop_back();
     lastNodeIndex = lastNode.getIndex();
     bubble(lastNodeIndex);
+}
+// Restructure the Heap. Used if some Nodes have been modified
+// outside the Heap.
+template <typename K, typename V>
+void BinHeap<K, V>::createHeap()
+{
+    int n = size();
+    for (int i = (n / 2) - 1; i >= 0; i--)
+    {
+        downheap(i);
+    }
+}
+// Won't return a reference.
+template <typename K, typename V>
+Entry<K, V> BinHeap<K, V>::operator[](int i)
+{
+    return *(storage[i]);
+}
+// Clears the Heap. Won't destroy the references inside the Heap.
+template <typename K, typename V>
+void BinHeap<K, V>::clearHeap()
+{
+    storage.clear();
 }
 
 //----Iterator----//
