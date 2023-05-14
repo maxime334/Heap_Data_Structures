@@ -23,6 +23,7 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Entry<K, V> &e)
     {
         os << "Entry has key: " << e.key << " and has value: " << e.value;
+        return os;
     }
     friend bool operator==(const Entry<K, V> &a, const Entry<K, V> &b)
     {
