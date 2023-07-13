@@ -231,7 +231,7 @@ template <typename K, typename V> Entry<K, V> &BinHeap<K, V>::removeMin() {
 // Must restore heap-order property after we replace the Key.
 template <typename K, typename V>
 void BinHeap<K, V>::replaceKey(Entry<K, V> &e, K key) {
-  e.setKey(key);
+  e.key = key;
   int index = e.index;
   bubble(index);
 }
