@@ -1,5 +1,5 @@
-#include "Common.hpp"
-#include "Bin_Heap.hpp"
+#include "Heaps/Common.hpp"
+#include "Heaps/Bin_Heap.hpp"
 
 int main()
 {
