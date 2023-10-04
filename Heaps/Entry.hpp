@@ -8,11 +8,18 @@ public:
   int index{0};
 
 public:
+  /*
+    Creates an entry w/ a null value.
+  */
   explicit Entry();
+  /*
+    Creates an entry w/ a Key and a Value.
+  */
   explicit Entry(K, V);
 
   //---Operator_Overloading---//
 
+  // Stream insertion overloading.
   friend std::ostream &operator<<(std::ostream &os, const Entry<K, V> &e) {
     os << "Entry has key: " << e.key << " and has value: " << e.value;
     return os;
@@ -48,15 +55,3 @@ public:
     return false;
   }
 };
-//--Constructors--//
-
-// Default.
-template <typename K, typename V> Entry<K, V>::Entry() {
-  K k;
-  V v;
-  this->key = k;
-  this->value = v;
-}
-// Parameterized.
-template <typename K, typename V>
-Entry<K, V>::Entry(K key, V value) : key(key), value(value) {}
